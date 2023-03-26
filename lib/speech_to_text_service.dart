@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 class SpeechToTextService {
-  static final _speech = SpeechToText();
+  final _speech = SpeechToText();
 
-  static Future<bool> toggleRecording({
+  Future<bool> toggleRecording({
     required Function(String text) onResult,
     required ValueChanged<bool> onListening,
   }) async {
