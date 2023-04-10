@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speech_to_action/alarm.dart';
 import 'package:speech_to_action/email.dart';
 import 'package:speech_to_action/speech_to_text_service.dart';
 import 'package:speech_to_action/url_launcher_service.dart';
@@ -105,6 +106,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         })
                       }
+                    else if (text == "alarm" ||
+                        text == "set alarm" ||
+                        text == "go to alarm")
+                      {
+                        Future.delayed(const Duration(seconds: 1), () {
+                          //  UrlLauncherService.scanText(text);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const Alarm(),
+                            ),
+                          );
+                        })
+                      }
                   }
               });
     }
@@ -129,11 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: const SizedBox(
                   width: 300,
-                  height: 200,
+                  height: 170,
                   child: Center(
                       child: Text('Send Mail', style: TextStyle(fontSize: 50))),
                 )),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
             Card(
                 elevation: 30,
                 color: Colors.orange,
@@ -142,16 +156,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: const SizedBox(
                   width: 300,
-                  height: 200,
+                  height: 170,
                   child: Center(
                       child: Text('Website', style: TextStyle(fontSize: 50))),
                 )),
             const SizedBox(height: 20),
+            Card(
+                elevation: 30,
+                color: Colors.amber,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const SizedBox(
+                  width: 300,
+                  height: 170,
+                  child: Center(
+                      child: Text('Alarm', style: TextStyle(fontSize: 50))),
+                )),
+            const SizedBox(height: 20),
+            const Text('-----------------'),
+            const SizedBox(height: 20),
             Text(
               isListening ? 'listening...' : text,
             ),
-            const SizedBox(height: 20),
-            const Text('-----------------'),
           ],
         ),
       ),
